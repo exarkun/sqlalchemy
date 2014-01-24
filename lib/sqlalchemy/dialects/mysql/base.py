@@ -797,7 +797,7 @@ class TEXT(_StringType, sqltypes.TEXT):
 
     __visit_name__ = 'TEXT'
 
-    def __init__(self, length=None, **kw):
+    def __init__(self, length=2 ** 16 - 1, **kw):
         """Construct a TEXT.
 
         :param length: Optional, if provided the server may optimize storage
@@ -857,7 +857,7 @@ class TINYTEXT(_StringType):
           only the collation of character data.
 
         """
-        super(TINYTEXT, self).__init__(**kwargs)
+        super(TINYTEXT, self).__init__(length=2 ** 8 - 1, **kwargs)
 
 
 class MEDIUMTEXT(_StringType):
@@ -889,7 +889,7 @@ class MEDIUMTEXT(_StringType):
           only the collation of character data.
 
         """
-        super(MEDIUMTEXT, self).__init__(**kwargs)
+        super(MEDIUMTEXT, self).__init__(length=2 ** 24 - 1, **kwargs)
 
 
 class LONGTEXT(_StringType):
@@ -921,7 +921,7 @@ class LONGTEXT(_StringType):
           only the collation of character data.
 
         """
-        super(LONGTEXT, self).__init__(**kwargs)
+        super(LONGTEXT, self).__init__(length=2 ** 32 - 1, **kwargs)
 
 
 class VARCHAR(_StringType, sqltypes.VARCHAR):
